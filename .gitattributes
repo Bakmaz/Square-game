@@ -32,6 +32,7 @@ function keydown(){
 			break;
 		case 39:
 			if(box.style.left === '450px'){
+<<<<<<< HEAD
 				box.style.left = '450px'
 =======
 				box.style.left = '350px'
