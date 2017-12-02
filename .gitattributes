@@ -33,6 +33,9 @@ function keydown(){
 		case 39:
 			if(box.style.left === '450px'){
 				box.style.left = '450px'
+=======
+				box.style.left = '350px'
+>>>>>>> 7c477ff86e71449b3ce2bad4aab39031d93508ea
 			}
 			else{
 				box.style.left = getNewPixelValue(box.style.left, 25);
