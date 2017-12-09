@@ -95,10 +95,9 @@ function isBoxPositionLegal(top, left) {
 	var wallLeft = getNumberValue(coordinate[0].left);
 	var wallHeight = getNumberValue(coordinate[0].height);
 	var wallWidth = getNumberValue(coordinate[0].width);
-	//if(top+50 < wallTop || top > wallTop + wallHeight){
-//		isTopLegal = true;
-//	}
-	if((left+50 < wallLeft || left > wallLeft + wallWidth) && (top+50 < wallTop || top > wallTop + wallHeight)){
+	var boxWidth = getNumberValue(coordinate[0].width);
+
+	if((left + 50 < wallLeft || left > wallLeft + wallWidth) || (top + 50 < wallTop ||top >  wallTop + wallHeight)){
 		isLeftLegal = true;
 	}
 	isLegal = isLeftLegal;
