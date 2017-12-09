@@ -1,11 +1,10 @@
-var box, intervalID;
+var box, intervalID, intervalActive = true;
 function init() {
 	box = document.getElementById('box');
 	box.style.left = box.style.left || '100px';
 	box.style.top = box.style.top || '100px';
 }
 init();
-
 function keydown(){
 	switch(event.keyCode){
         case 37:
@@ -29,7 +28,12 @@ function keydown(){
 			box.style.top = getNewPixelValue(box.style.top, 25);
 			break;
 		case 13:
+		if(intervalActive){
 			clearInterval(intervalID);
+		} else {
+			intervalID = window.setInterval(boxGravitate, 500);
+		}
+		intervalActive = !intervalActive;
 			break;
 	}
 }
