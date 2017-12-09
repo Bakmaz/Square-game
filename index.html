@@ -1,63 +1,10 @@
-<html>
-<style>
-#box {
-	position:absolute;
-	top:100px;
-	left:100px;
-	width:50px;
-	height:50px;
-	background-color:green;
-}
-#wall1 {
-	position:absolute;
-	top:100px;
-	left:500px;
-	width:10px;
-	height:500px;
-	background-color:gray;
-}
-</style>
-<script>
-function keydown(){
-	var box = document.getElementById('box');
-	box.style.left = box.style.left || '100px';
-	box.style.top = box.style.top || '100px';
-	switch(event.keyCode){
-        case 37:
-			if(box.style.left !== '525px'){
-				box.style.left = getNewPixelValue(box.style.left, -25);
-			}		
-			break;
-		case 38:
-			box.style.top = getNewPixelValue(box.style.top, -25);
-			break;
-		case 39: 
-			if(box.style.left !== '450px'){
-				box.style.left = getNewPixelValue(box.style.left, 25);
-			}
-			var h = getNumberValue(box.style.top);
-			if(h < 75){
-				box.style.left = getNewPixelValue(box.style.left, 25);
-			}
 
-			break;
-		case 40:
-			box.style.top = getNewPixelValue(box.style.top, 25);
-			break;
-	}
-}
-function getNewPixelValue(value, newValue){
-	var result = Number.parseInt(value.replace('px',''));
-	result += newValue;
-	return result + 'px';
-}
-function getNumberValue(value){
-	return Number.parseInt(value.replace('px',''));
-}
-</script>
+<head>
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="script.js"></script>
+</head>
 <body onkeydown="keydown()">
 <div id="box"></div>
 <div id="wall1"></div>
 </body>
-</html>
-</script>
+
