@@ -1,4 +1,4 @@
-var box;
+var box, intervalID;
 function init() {
 	box = document.getElementById('box');
 	box.style.left = box.style.left || '100px';
@@ -24,10 +24,12 @@ function keydown(){
 			if(h < 75){
 				box.style.left = getNewPixelValue(box.style.left, 25);
 			}
-
 			break;
 		case 40:
 			box.style.top = getNewPixelValue(box.style.top, 25);
+			break;
+		case 13:
+			clearInterval(intervalID);
 			break;
 	}
 }
@@ -40,8 +42,8 @@ function getNumberValue(value){
 	return Number.parseInt(value.replace('px',''));
 }
 
+intervalID = window.setInterval(boxGravitate, 500);
 
 function boxGravitate(){
 	box.style.top = getNewPixelValue(box.style.top, 25);
 }
-var intervalID = window.setInterval(boxGravitate, 500);
