@@ -24,18 +24,22 @@ function keydown(){
 	box.style.top = box.style.top || '100px';
 	switch(event.keyCode){
         case 37:
-			box.style.left = getNewPixelValue(box.style.left, -25);
+			if(box.style.left !== '525px'){
+				box.style.left = getNewPixelValue(box.style.left, -25);
+			}		
 			break;
 		case 38:
 			box.style.top = getNewPixelValue(box.style.top, -25);
 			break;
-		case 39:
-			if(box.style.left === '450px'){
-				box.style.left = '450px'
-			}
-			else{
+		case 39: 
+			if(box.style.left !== '450px'){
 				box.style.left = getNewPixelValue(box.style.left, 25);
-				}
+			}
+			var h = getNumberValue(box.style.top);
+			if(h < 75){
+				box.style.left = getNewPixelValue(box.style.left, 25);
+			}
+
 			break;
 		case 40:
 			box.style.top = getNewPixelValue(box.style.top, 25);
@@ -47,7 +51,9 @@ function getNewPixelValue(value, newValue){
 	result += newValue;
 	return result + 'px';
 }
-
+function getNumberValue(value){
+	return Number.parseInt(value.replace('px',''));
+}
 </script>
 <body onkeydown="keydown()">
 <div id="box"></div>
