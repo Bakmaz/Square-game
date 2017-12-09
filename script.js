@@ -1,7 +1,12 @@
-function keydown(){
-	var box = document.getElementById('box');
+var box;
+function init() {
+	box = document.getElementById('box');
 	box.style.left = box.style.left || '100px';
 	box.style.top = box.style.top || '100px';
+}
+init();
+
+function keydown(){
 	switch(event.keyCode){
         case 37:
 			if(box.style.left !== '525px'){
@@ -34,3 +39,9 @@ function getNewPixelValue(value, newValue){
 function getNumberValue(value){
 	return Number.parseInt(value.replace('px',''));
 }
+
+
+function boxGravitate(){
+	box.style.top = getNewPixelValue(box.style.top, 25);
+}
+var intervalID = window.setInterval(boxGravitate, 500);
