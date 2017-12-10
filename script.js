@@ -86,22 +86,29 @@ function newArray() {
 }
 
 
-
-function isBoxPositionLegal(top, left) {
-	var isLegal = false;
-	var isTopLegal = false;
-	var isLeftLegal = false;
-	var wallTop = getNumberValue(coordinate[0].top);
-	var wallLeft = getNumberValue(coordinate[0].left);
-	var wallHeight = getNumberValue(coordinate[0].height);
-	var wallWidth = getNumberValue(coordinate[0].width);
-	var boxWidth = getNumberValue(coordinate[0].width);
-
-	if((left + 50 < wallLeft || left > wallLeft + wallWidth) || (top + 50 < wallTop ||top >  wallTop + wallHeight)){
-		isLeftLegal = true;
+function isBoxPositionLegal(top, left) {	
+	var myArray = []
+	for(var i = 0; i < coordinate.length; i++){
+		myArray[i] = isTouched(coordinate[i], top, left)
 	}
-	isLegal = isLeftLegal;
-	return isLegal;
+	for(var i = 0; i < myArray.length; i++){
+		if(!myArray[i]) {
+			return false;
+		}
+	}
+	return true;
+	 
+}	  
+
+function isTouched(wall,top, left){
+	var wallTop = getNumberValue(wall.top);
+	var wallLeft = getNumberValue(wall.left);
+	var wallHeight = getNumberValue(wall.height);
+	var wallWidth = getNumberValue(wall.width);
+	
+    if((left + 50 < wallLeft || left > wallLeft + wallWidth) || (top + 50 < wallTop ||top >  wallTop + wallHeight)){
+	   return true;
+    }
+    return false;	
 }
-	  
 
