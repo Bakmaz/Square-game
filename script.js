@@ -1,4 +1,4 @@
-var box, intervalID, intervalActive = true;
+var box, intervalGravitateID, intervalActive = true;
 function init() {
 	box = document.getElementById('box');
 	box.style.left = box.style.left || '50px';
@@ -21,6 +21,12 @@ function keydown(){
 		   if(isBoxPositionLegal(getNumberValue(box.style.top), getNumberValue(box.style.left) + 5)){
 				box.style.left = getNewPixelValue(box.style.left, 5);
 		   }
+		   if(getNumberValue(box.style.left) > 1250 ){
+			   alert('Epic Win!');			   
+		   }
+		   if(getNumberValue(box.style.left) > 1250 ){
+		   clearInterval(intervalID);
+		   }
 			break;
 		case 40: // down
 		    if(isBoxPositionLegal(getNumberValue(box.style.top) + 5, getNumberValue(box.style.left))){
@@ -28,12 +34,12 @@ function keydown(){
 			}
 			break;
 		case 13: // enter
-		if(intervalActive){
-			clearInterval(intervalID);
-		} else {
-			intervalID = window.setInterval(boxGravitate, 500);
-		}
-		intervalActive = !intervalActive;
+			if(intervalActive){
+				clearInterval(intervalGravitateID);
+			} else {
+				intervalGravitateID = window.setInterval(boxGravitate, 500);
+			}
+			intervalActive = !intervalActive;
 			break;
 	}
 }
@@ -46,7 +52,7 @@ function getNumberValue(value){
 	return Number.parseInt(value.replace('px',''));
 }
 
-intervalID = window.setInterval(boxGravitate, 500);
+intervalGravitateID = window.setInterval(boxGravitate, 500);
 
 function boxGravitate(){
 	//box.style.top = getNewPixelValue(box.style.top, 25);
@@ -66,22 +72,38 @@ function createWall(top, left, width, height, background){
 newWalls();
 
 function newWalls(){
-	for(var i=0; i < coordinate.length; i++){
+	for(var i = 0; i < coordinate.length; i++){
 		createWall(coordinate[i].top, coordinate[i].left, coordinate[i].width, coordinate[i].height, coordinate[i].background);
 	}
  	
 }
 function newArray() {
-	var result = [];
-	for(var i = 0; i < 3; i++){
+	var result = [];	
+	result[8] =  {
+		top: '0px',
+		left: '0px',
+		width: '1365px',
+		height: '10px',
+		background:'yellow'
+	};
+	result[9] =  {
+		top: '600px',
+		left: '0px',
+		width: '1365px',
+		height: '10px',
+		background:'red'
+	};
+	
+	for(var i = 0; i < 8; i++){
 	  result[i] =  {
 			top: Math.round(Math.random() * 150) +'px',
 			left: 150 + (i * 150) +'px',
 			width: '10px',
-			height: Math.round((Math.random() + 0.3) * 450) +'px',
+			height: Math.round((Math.random() + 0.3) * 380) +'px',
 			background:'blue'
 		};
 	}
+	
 	return result;
 }
 
@@ -111,4 +133,10 @@ function isSafe(wall,top, left){
     }
     return false;	
 }
-
+	
+intervalID = window.setInterval(setTimer, 100);
+var gameTime = 0;
+function setTimer(){
+	gameTime = gameTime + 1;
+	document.getElementById('timer').innerHTML = gameTime / 10;
+}

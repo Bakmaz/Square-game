@@ -14,3 +14,14 @@
 	height:500px;
 	background-color:gray;
 }
+#timer {
+	position:absolute;
+	top:50px;
+	left:1250px;
+	width:35px;
+	height:20px;
+	background-color:white;
+	border: dotted;
+	padding-left: 10px;
+	
+}
